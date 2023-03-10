@@ -38,7 +38,7 @@ class Lesson(BaseModel):
     content = RichTextField()
     image = models.ImageField(upload_to='courses/static/%Y/%m', null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)  # nếu xoá course thì xoá luôn lesson#
-    tags = models.ManyToManyField('Tag',related_name='lessons') #giúng href á#
+    tags = models.ManyToManyField('Tag', related_name='lessons')  # giúng href á#
 
     def __str__(self):
         return self.subject
