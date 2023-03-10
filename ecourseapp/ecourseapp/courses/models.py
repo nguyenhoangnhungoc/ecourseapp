@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    pass
+    avatar = models.ImageField(upload_to='users/%Y/%m', null=True)
 
 
 class BaseModel(models.Model):
@@ -26,7 +26,7 @@ class Category(models.Model):
 class Course(BaseModel):
     subject = models.CharField(max_length=255)
     description = RichTextField()
-    image = models.ImageField(upload_to='courses/static/%Y/%m', null=True)
+    image = models.ImageField(upload_to='courses/%Y/%m', null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)  # nếu có khoá học thì không cho xoá danh mục#
 
     def __str__(self):
@@ -36,7 +36,7 @@ class Course(BaseModel):
 class Lesson(BaseModel):
     subject = models.CharField(max_length=255)
     content = RichTextField()
-    image = models.ImageField(upload_to='courses/static/%Y/%m', null=True)
+    image = models.ImageField(upload_to='lessons/%Y/%m', null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)  # nếu xoá course thì xoá luôn lesson#
     tags = models.ManyToManyField('Tag', related_name='lessons')  # giúng href á#
 
