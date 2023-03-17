@@ -33,7 +33,7 @@ class LessonTagInlineAdmin(admin.StackedInline):  # nhúng zô để sửa (ki�
 
 class LessonAdmin(admin.ModelAdmin):
     list_display = ['id', 'subject', 'created_date']
-    search_fields = ['subject', 'tag']
+    search_fields = ['subject', 'tags']
     list_filter = ['tags', 'course']
     form = LessonForm
     inlines = [LessonTagInlineAdmin]
