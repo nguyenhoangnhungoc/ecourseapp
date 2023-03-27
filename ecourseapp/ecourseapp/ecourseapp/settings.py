@@ -28,6 +28,9 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+MEDIA_ROOT = '%s/courses/static/' % BASE_DIR
+
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
