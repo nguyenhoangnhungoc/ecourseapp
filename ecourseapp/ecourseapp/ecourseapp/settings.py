@@ -30,7 +30,6 @@ ALLOWED_HOSTS = []
 
 MEDIA_ROOT = '%s/courses/static/' % BASE_DIR
 
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,17 +37,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'courses.apps.CoursesConfig',
     'ckeditor',
     'ckeditor_uploader',
+    'courses.apps.CoursesConfig',
     'rest_framework',
     'drf_yasg',
-    'oauth2_provider'
+    'oauth2_provider',
+    'corsheaders'
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 CKEDITOR_UPLOAD_PATH = "ckeditor/courses/"
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
