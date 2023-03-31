@@ -1,6 +1,5 @@
 from rest_framework import serializers
-
-from .models import *
+from .models import Category, Course, Lesson, Tag, User, Comment
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -12,7 +11,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField(source='image')
 
-    def get_image(self, course):  # link dẫn zô image#
+    def get_image(self, course):
         if course.image:
             request = self.context.get('request')
             return request.build_absolute_uri('/static/%s' % course.image.name) if request else ''
@@ -29,13 +28,6 @@ class TagSerializer(serializers.ModelSerializer):
 
 
 class LessonSerializer(serializers.ModelSerializer):
-    image = serializers.SerializerMethodField(source='image')
-
-    def get_image(self, lesson):  # link dẫn zô image#
-        if lesson.image:
-            request = self.context.get('request')
-            return request.build_absolute_uri('/static/%s' % lesson.image.name) if request else ''
-
     class Meta:
         model = Lesson
         fields = ['id', 'subject', 'created_date', 'updated_date', 'image']
@@ -98,4 +90,4 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ['id', 'content', 'created_date', 'user']
+        fields = ["id", "content", "created_date", "user"]
