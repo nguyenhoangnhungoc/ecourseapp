@@ -28,6 +28,13 @@ class TagSerializer(serializers.ModelSerializer):
 
 
 class LessonSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField(source='image')
+
+    def get_image(self, lesson):
+        if lesson.image:
+            request = self.context.get('request')
+            return request.build_absolute_uri('/static/%s' % lesson.image.name) if request else ''
+
     class Meta:
         model = Lesson
         fields = ['id', 'subject', 'created_date', 'updated_date', 'image']
